@@ -16,21 +16,21 @@
       <form action="" id="frm" class="form">
         <div class="input-grp">
            <div class="input-field" id="nameField">
-            <span class="error-msg"></span>
-            <input type="text" class="fname" placeholder="First Name" data-validation="required">
-           </div> <br>
-           <div class="input-field name" id="nameField1">
-            <span class="error-msg"></span>
-            <input type="text" class="lname" placeholder="Last Name" data-validation="required">
+            
+            <input type="text" class="fname" placeholder="Name" data-validation="required" />
            </div> <br>
            <div class="input-field">
-            <input type="email" class="email" placeholder="Email" data-validation="required" >
+            <input type="email" class="email" placeholder="Email" data-validation="required" />
            </div> <br>
            <div class="input-field" id="numField">
-            <input type="tel" class="contact"  placeholder="Phone Number" pattern="[-+][0-9]" data-validation="required">
+            <input type="tel" class="contact"  placeholder="Phone Number" pattern="[-+][0-9]" data-validation="required" />
            </div> <br>
            <div class="input-field">
-            <input type="password" class="password" minlength="8" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*\s).$" data-validation="required">
+            <span class="error-msg">password must be at least 8 characters*</span>
+            <input type="password" class="password pas" minlength="8" placeholder="Password"  data-validation="required" />
+           </div> <br>
+           <div class="input-field">
+            <input type="password" class="password cp" placeholder="Confirm Password"  data-validation="required" />
            </div> <br>
            <p class="lost-password" id="forgot">Forgot password <a href="authentication3.html">Click Here</a> </p>
       </div>
@@ -41,6 +41,6 @@
     </form>
     </div>
   </div>
-  <script src="authenticationj.js"></script>  
+  <script type="module" src="authenticationj.js"></script>  
 </body>
 </html>

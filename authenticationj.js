@@ -1,108 +1,136 @@
 //variables
 let title = document.querySelector('#title');
 let names = document.querySelector('#nameField');
-let name1 = document.querySelector('#nameField1');
 let number = document.querySelector('#numField');
 let forgot = document.querySelector('#forgot');
 let signup = document.querySelector('#signupBtn');
 let signin = document.querySelector('#signinBtn');
 let submit = document.querySelector("#submit");
 let input = document.querySelector('.input-grp');
-let pass = document.querySelector('.password');
+let errors = document.querySelector('.error-msg')
+let pass = document.querySelector('.pas');
+let pass1 = document.querySelector('.cp');
 let mail = document.querySelector('.email');
 let btnField = document.querySelector('#btn-field');
-let corz = 'https://cors-anywhere.herokuapp.com/';
-let signinBase ='http://localhost:28217/api/Auth/Login';
-let signupBase ='http://localhost:28217/api/Auth/Register';
-let forgotpass ='http://localhost:28217/api/Auth/Forgot?Password';
+
 //var count = 0;
 //var counts = 0;
 //events
+
+
+
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+  import {getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
+  import "https://www.gstatic.com/firebasejs/10.3.0/firebase-database.js";
+  import "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const config = {
+    apiKey: "AIzaSyCwW3vMFeocyeV5JcjKCktPNa0Mkr9dpkY",
+    authDomain: "authentication-35262.firebaseapp.com",
+    projectId: "authentication-35262",
+    storageBucket: "authentication-35262.appspot.com",
+    messagingSenderId: "63312855594",
+    appId: "1:63312855594:web:1c8586f51f0958dc217953"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(config);
+  const auth = getAuth(app)
+
+
+
+
 signin.onclick = function(){
     names.style.maxHeight = "0";
-    name1.style.maxHeight = "0";
     number.style.maxHeight = "0";
+    pass1.style.display = "none";
     pass.style.height = "2px";
     mail.style.height = "2px";
    // btnField.style.marginTop = '0';
     title.innerHTML = "Sign In";
     signup.classList.add("disable");
     signin.classList.remove("disable");
+    
+    const email = mail.value;
+    const password = pass.value;
+
+    const pro = signInWithEmailAndPassword(auth,email, password)
+        .then((userCredential)=> {
+            alert("signin successful");
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user);
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorCode, errorMessage)
+            // ..
+        });
+
 
 }
+
 signup.onclick = function(){
     names.style.maxHeight = "60px";
-    name1.style.maxHeight = "60px";
     number.style.maxHeight = "60px";
+    pass1.style.display = "block"
     title.innerHTML = "Sign Up";
     signup.classList.remove("disable");
     signin.classList.add("disable");
+
+    if (pass.value !== pass1.value) {
+        alert("passwords do not match");
+        return;
+    } else if(pass.value.length !== 8) {
+        errors.style.display = "block";
+    } else{
+        const email = mail.value;
+        const password = pass.value;
+        //const displayName = names.value
+
+        const promise = createUserWithEmailAndPassword(auth,email, password)
+        .then((userCredential)=> {
+            alert("signup successful");
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user);
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorCode, errorMessage)
+            // ..
+        });
+    }
     
 }
 
-/*let init = () => {
-    if (count > 1 && count <3){
-        document.getElementById("frm").submit();
-    }
-}
-init();*/
 
 
-function changePass(){
+
+submit.onclick = function(){
     submit.style.backgroundColor = "#eaeaea";
     submit.style.color = "#555";
-    
+    const email = mail.value;
+
+    const reset = sendPasswordResetEmail(auth, email)
+    .then(() => {
+        // 
+        alert("Password reset email sent!")
+        // ..
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+    });
 }
 
 
-//functions
-fetch(signupBase).then(function (response) {
-    if (response.ok) {
-        return response.json();
-    } else {
-        return Promise.reject(response);
-    }
-}).then(function (data) {
-    console.log(data);
-}).catch(function (error) {
-    console.warn('Something went wrong.', error);
-});
-/*function onget() {
-    fetch(signupBase)
-    .then((response) => {
-        if (!response.ok){
-            throw new(response.error)
-        }
-        console.log( response.json());
-    })
-    
-    .then(data => {
-        names.value= data.firstName;
-    })
-    .catch(function(error){
-        names.value = error;
-    })
-}*/
-/*window.addEventListener('load', () =>{
-fetch(signupBase)
-   .then(response => response.json())
-   .then(responseJson => console.log(responseJson));
-});*
-window.addEventListener('load',
-async function endpoint() {
-    let response = await fetch(signupBase);
-    let data = response.json();
-    console.log(data);
-   }
-)
-   
-let response =  async () => {
-    await fetch(signupBase);
-    if (response.ok){
-        let json =await response.json();
-        console.log(json);
-    } else {
-       alert('HTTP-Error: ' + response.status)
-    }
-
-}*/

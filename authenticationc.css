@@ -27,7 +27,7 @@
 .form-box h1, h3{
     font-size: 30px;
     font-weight: bolder;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     color: #3c00a0;
     position: relative;
 }
@@ -73,6 +73,7 @@ form p a{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-top: 4vh;
 }
 .btn-field button{
     flex-basis: 48%;
@@ -112,4 +113,9 @@ form p a{
 .btn-field button.disable{
     background-color: #eaeaea;
     color: #555;
+}
+.error-msg{
+    display: none;
+    color: red;
+    font-size: 0.8rem;
 }
