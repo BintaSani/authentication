@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="authenticationc.css">
+    <link rel="stylesheet" href="authentication3.html">
+    <title>authentication</title>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h1 class="head" id="title">Sign Up</h1> 
+    
+      <form action="" id="frm" class="form">
+        <div class="input-grp">
+           <div class="input-field" id="nameField">
+            <span class="error-msg"></span>
+            <input type="text" class="fname" placeholder="First Name" data-validation="required">
+           </div> <br>
+           <div class="input-field name" id="nameField1">
+            <span class="error-msg"></span>
+            <input type="text" class="lname" placeholder="Last Name" data-validation="required">
+           </div> <br>
+           <div class="input-field">
+            <input type="email" class="email" placeholder="Email" data-validation="required" >
+           </div> <br>
+           <div class="input-field" id="numField">
+            <input type="tel" class="contact"  placeholder="Phone Number" pattern="[-+][0-9]" data-validation="required">
+           </div> <br>
+           <div class="input-field">
+            <input type="password" class="password" minlength="8" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*\s).$" data-validation="required">
+           </div> <br>
+           <p class="lost-password" id="forgot">Forgot password <a href="authentication3.html">Click Here</a> </p>
+      </div>
+      <div class="btn-field">
+        <button type="button" form="frm1" id="signupBtn" >Sign Up</button>
+        <button type="button" form="frm1" id="signinBtn" class="disable">Sign In</button>
+      </div> 
+    </form>
+    </div>
+  </div>
+  <script src="authenticationj.js"></script>  
+</body>
+</html>
