@@ -79,7 +79,7 @@ form p a{
     flex-basis: 48%;
     background: #3c00a0;
     color: #fff;
-    height: 40px;
+    height: 6vh;
     border-radius: 20px;
     border: 0;
     outline: 0;
@@ -90,7 +90,7 @@ form p a{
 #submit {
     background: #3c00a0;
     color: #fff;
-    height: 40px;
+    height: 6vh;
     width: 120px;
     border-radius: 20px;
     border: 0;
@@ -105,7 +105,7 @@ form p a{
     color: #555;
 }*/
 .input-grp{
-    height: 400px;
+    height: 55vh;
 }
 .grp{
     height: 50px;

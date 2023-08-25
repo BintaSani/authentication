@@ -80,7 +80,7 @@ function signIn(e){
 }
 
 function signUp(e){
-    e.preventDefault()
+    e.preventDefault();
 
     names.style.maxHeight = "60px";
     number.style.maxHeight = "60px";
@@ -95,6 +95,7 @@ function signUp(e){
     } else if(pass.value.length !== 8) {
         errors.style.display = "block";
     } else{
+        errors.style.display = "none";
         const email = mail.value;
         const password = pass.value;
         //const displayName = names.value
