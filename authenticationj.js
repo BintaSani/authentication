@@ -5,7 +5,6 @@ let number = document.querySelector('#numField');
 let forgot = document.querySelector('#forgot');
 let signup = document.querySelector('#signupBtn');
 let signin = document.querySelector('#signinBtn');
-let submit = document.querySelector("#submit");
 let input = document.querySelector('.input-grp');
 let errors = document.querySelector('.error-msg')
 let pass = document.querySelector('.pas');
@@ -21,7 +20,7 @@ let btnField = document.querySelector('#btn-field');
 
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
-  import {getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
+  import {getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
   import "https://www.gstatic.com/firebasejs/10.3.0/firebase-database.js";
   import "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
@@ -41,10 +40,14 @@ let btnField = document.querySelector('#btn-field');
   const app = initializeApp(config);
   const auth = getAuth(app)
 
+signin.addEventListener('click', signIn);
+signup.addEventListener('click', signUp);
 
 
 
-signin.onclick = function(){
+function signIn(e){
+    e.preventDefault()
+
     names.style.maxHeight = "0";
     number.style.maxHeight = "0";
     pass1.style.display = "none";
@@ -76,7 +79,9 @@ signin.onclick = function(){
 
 }
 
-signup.onclick = function(){
+function signUp(e){
+    e.preventDefault()
+
     names.style.maxHeight = "60px";
     number.style.maxHeight = "60px";
     pass1.style.display = "block"
@@ -115,22 +120,7 @@ signup.onclick = function(){
 
 
 
-submit.onclick = function(){
-    submit.style.backgroundColor = "#eaeaea";
-    submit.style.color = "#555";
-    const email = mail.value;
 
-    const reset = sendPasswordResetEmail(auth, email)
-    .then(() => {
-        // 
-        alert("Password reset email sent!")
-        // ..
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-    });
-}
+
 
 
